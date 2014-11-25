@@ -1,15 +1,8 @@
 module.exports = function(app, passport) {
   // =====================================
-  // HOME PAGE (with login links) ========
-  // =====================================
-  app.get('/', function(req, res) {
-    res.render('index.html'); // load the index.html file
-  });
-
-  // =====================================
   // LOGIN ===============================
   // =====================================
-  // show the login form
+  // show the login form-
   app.get('/login', function(req, res) {
     // render the page and pass in any flash data if it exists
     res.render('login.html', { message: req.flash('loginMessage') }); 
@@ -56,6 +49,11 @@ module.exports = function(app, passport) {
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
+  });
+
+  // route to handle all Angular requests
+  app.get('*', function(req, res) {
+    res.render('../public/partials/index.html');
   });
 };
 
