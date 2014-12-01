@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Forgot Password</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+
+  {{#if fail}}
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{fail}}
+    </div>
+  {{/if}}
+
+  {{#if success}}
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{success}}
+    </div>
+  {{/if}}
+
+	<!-- FORGOT PASSWORD FORM -->
+	<form id="myForm" action="/forgot" method="post">
+		<legend>Forgot Password</legend>
+
+		<div class="form-group">
+			<label for='email'>Email</label>
+			<input type="text" class="form-control" name="email" autofocus>
+		</div>
+
+		<button type="submit" class="btn btn-primary active"> Reset Password</button>
+		<a class="btn btn-default active" href="/"> Back to Login</a>
+	</form>
+
+
+</div>
+
+</div>
+</body>
+</html>

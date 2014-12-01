@@ -5,11 +5,11 @@
 			.when('/', {
 				templateUrl: '/partials/main.html'
 			})
-
+/*
 			.when('/login', {
 				templateUrl: '/partials/login.html'
 			})
-/*
+
 			.when('/about', {
 				templateUrl: '/partials/about.html'
 			})
