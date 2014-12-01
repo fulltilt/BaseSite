@@ -32,7 +32,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 var hbs = require('hbs');
-//app.set('view engine', 'html');
+app.set('view engine', 'html');
 app.engine('html', hbs.__express);
 app.use(bodyParser());
 
