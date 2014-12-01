@@ -1,0 +1,1 @@
+angular.module('BaseSite', ['ngRoute', 'ngCookies', 'appRoutes', 'ngSanitize', 'BaseSite.controllers', 'BaseSite.directives']);

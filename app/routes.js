@@ -1,11 +1,15 @@
 module.exports = function(app, passport) {
+  app.get('/home', function(req, res) {
+    res.render('main.html');
+  });
+
   // =====================================
   // LOGIN ===============================
   // =====================================
   // show the login form-
   app.get('/login', function(req, res) {
     // render the page and pass in any flash data if it exists
-    res.render('login.html', { message: req.flash('loginMessage') }); 
+    res.render('login.hbs', { message: req.flash('loginMessage') }); 
   });
 
   // process the login form
@@ -22,7 +26,7 @@ module.exports = function(app, passport) {
   // show the signup form
   app.get('/signup', function(req, res) {
     // render the page and pass in any flash data if it exists
-    res.render('signup.html', { message: req.flash('signupMessage') });
+    res.render('signup.hbs', { message: req.flash('signupMessage') });
   });
 
   // process the signup form
@@ -38,7 +42,7 @@ module.exports = function(app, passport) {
   // we will want this protected so you have to be logged in to visit
   // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile.html', {
+    res.render('profile.hbs', {
       user : req.user // get the user out of session and pass to template
     });
   });
@@ -48,7 +52,7 @@ module.exports = function(app, passport) {
   // =====================================
   app.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/home');
   });
 
   // route to handle all Angular requests
