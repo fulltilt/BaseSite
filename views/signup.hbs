@@ -1,42 +1,48 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-    </style>
+  <title>BaseSite</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+  <script type="text/javascript" src="/js/validate_password.js"></script>
 </head>
 <body>
-  
 <div class="container">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
-    {{#if message}}
-      <div class="alert alert-danger">{{message}}</div>
-    {{/if}}
+<div class="col-sm-6 col-sm-offset-3">
 
-    <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="text" class="form-control" name="email">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" name="password">
-      </div>
+  <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
-      <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-    </form>
+  {{#if message}}
+    <div class="alert alert-danger">{{message}}</div>
+  {{/if}}
 
-    <hr>
 
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-  </div>
+  <!-- LOGIN FORM -->
+  <form id="myForm" action="/signup" method="post">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" id="pwd1" name="pwd1" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+    </div>
+    <div class="form-group">
+      <label>Re-enter Password</label>
+      <input type="password" class="form-control" id="pwd2" name="pwd2" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+    </div>
+
+    <button type="submit" class="btn btn-warning btn-lg active">Signup</button>
+  </form>
+
+  <hr>
+
+  <p>Already have an account? <a href="/login">Login</a></p>
+  <p>Or go <a href="/">home</a>.</p>
+
 </div>
 
+</div>
 </body>
 </html>

@@ -2,14 +2,15 @@
 	angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 		$routeProvider
-			.when('/', {
-				templateUrl: '/partials/main.html'
-			})
 
+			.when('/home', {
+				templateUrl: '/partials/home.html'
+			})
+/*
 			.when('/login', {
 				templateUrl: '/partials/login.html'
 			})
-/*
+
 			.when('/about', {
 				templateUrl: '/partials/about.html'
 			})
@@ -46,7 +47,7 @@
 				templateUrl: '/partials/edit-sub.html'
 			})
 */
-			.otherwise({redirectTo: '/'});
+			.otherwise({redirectTo: '/home'});
 
 		$locationProvider.html5Mode(true);
 
