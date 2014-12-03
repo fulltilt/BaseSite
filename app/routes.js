@@ -1,8 +1,13 @@
+var async    = require('async'), // helps with nested callbacks
+    crypto   = require('crypto'),
+    nodemailer = require('nodemailer'),
+    User = require('./models/user');
+
 module.exports = function(app, passport) {
   /* NOTE: When user initially visits the site, logs in and logs out, this whole workflow will be done on the server-side 
      to take advantage of middleware and flash messages. Once user is logged in, everything will work on the client via Angular */
   app.get('/', function(req, res) {
-    res.render('main.html');
+    res.render('index.html');
   });
 
   // =====================================
@@ -16,7 +21,7 @@ module.exports = function(app, passport) {
 
   // process the login form
   app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
+    successRedirect : '/home',  // dummy url that directs to Angular routing
     failureRedirect : '/login', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
   }));
@@ -198,17 +203,35 @@ module.exports = function(app, passport) {
     res.redirect('/');
   });
 
-  // route to handle all Angular requests
-  app.get('*', function(req, res) {
+  // =====================================
+  // MISC ==============================
+  // =====================================
+
+  // check to see if the user is logged in
+  app.get('/api/userData', isLoggedInAjax, function(req, res) {
+    return res.json(req.user);
+  });
+
+  // route to handle all Angular requests. Ensure that user is logged in before Angular takes over the routing
+  app.get('*', isLoggedIn, function(req, res) {
     res.render('../public/partials/index.html');
   });
 };
+
+// route middleware to ensure user is logged in - ajax get
+function isLoggedInAjax(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.json( { redirect: '/login' } );
+  } else {
+    next();
+  }
+}
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on 
   if (req.isAuthenticated())
-      return next();
+    return next();
 
   // if they aren't redirect them to the home page
   res.redirect('/');

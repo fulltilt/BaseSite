@@ -59,10 +59,7 @@
             <a class="page-scroll" href="#contact">Contact</a>
           </li>
           <li>
-            <a class="page-scroll" href="/login">Login</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="/signup">Signup</a>
+            <a class="page-scroll" href="/logout" ng-click="clearCookies()" target="_self">Logout</a>
           </li>
         </ul>
       </div>
@@ -72,12 +69,10 @@
   </nav>
   
 
-  <!--<div class="container">-->
+  <section class="container content-section text-center">
     <!-- ANGULAR DYNAMIC CONTENT -->
     <div class="view" ng-view></div>
-  <!--</div>-->
-
-<!-- <ig-login></ig-login> -->
+  </section>
 
   <!-- Contact Section -->
   <section id="contact" class="container content-section text-center">
